@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Cellphone</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="../CSS/admin.css">
+</head>
+  <body>
+      <div class="container">
+        <div class="display-4 my-4">Thực hành javascript - axios</div>
+      </div>
+
+      <!--menu-->
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active show" href="#DanhSachSP" role="tab" data-toggle="tab" aria-selected="true">Danh sách sản phẩm</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#DanhSachNguoiDung" role="tab" data-toggle="tab" aria-selected="false">Danh sách người dùng</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#ThongKe" role="tab" data-toggle="tab" aria-selected="false">Thống kê</a>
+        </li>
+      </ul>
+      <!-- tab panes-->
+      <div class="tab-content">
+        <!--Danh sách người dùng -->
+        <div role="tabpanel" class="tab-pane in active show" id="DanhSachSP">
+          <div class="row">
+            <div class="col-md-8">
+              <!-- BEGIN BUTTOM THÊM MỚI -->
+              <button id="btnThemSP" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+                <i class="fa fa-plus mr-1"></i>
+                Thêm Mới
+              </button>
+              <!-- END BUTTON THÊM MỚI -->
+            </div>
+            <div class="col-md-4">
+              <!-- BEGIN TÌM KIẾM -->
+              <div class="input-group mb-3">
+                <input id="inputTK" type="text" class="form-control" placeholder="Nhập từ khóa" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
+                </div>
+              </div>
+              <!-- END TÌM KIẾM -->
+            </div>
+          </div>
+          <div class="clear-fix"></div>
+          <div class="tblSanPham" id="tblSanPham">
+            <!-- BEGIN TABLE NGƯỜI DÙNG -->
+            <table class="table table-bordered">
+              <thead>
+                <tr><th>STT</th>
+                <th>Tên Sản Phẩm</th>
+                <th>Giá</th>
+                <th>Hình Ảnh</th>
+                <th>Mô Tả</th>                
+                <th>Action</th>
+              </tr></thead>
+              <tbody id="tblDanhSachSP"></tbody>
+            </table>
+            <!-- END TABLE NGƯỜI DÙNG -->
+          </div>
+          <br>
+        </div>
+        <!-- Kết thúc danh sách người dùng -->
+        <!-- Danh sách khóa học -->
+        <div role="tabpanel" class="tab-pane fade" id="DanhSachNguoiDung">
+          <span>Đang cập nhật...</span>
+        </div>
+        <!-- Kết thúc danh sách khóa học -->
+        <!-- Thống kê -->
+        <div role="tabpanel" class="tab-pane fade" id="ThongKe">
+          <span>Đang cập nhật...</span>
+        </div>
+        <!-- Kết thúc thống kê -->
+      </div>
+
+      <!-- the modal-->
+      <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Modal Heading</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                ×
+              </button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="form-group">
+                <label>STT item</label>
+                <input
+                  id="numberSP"
+                  class="form-control"
+                  placeholder="enter number item"
+                />
+              </div>
+              <div class="form-group">
+                <label>Name </label>
+                <input id="TenSP" class="form-control" placeholder="Ex: Iphone">
+                <span class="appleP" id="nameSP"></span>
+                
+              </div>
+              <div class="form-group">
+                <label>Price</label>
+                <input id="GiaSP" class="form-control" placeholder="$1000">
+                <span class="appleP" id="priceSP"></span>
+
+              </div>     
+              <div class="form-group">
+                <label>Screen</label>
+                <input
+                  id="manhinhSP"
+                  class="form-control"
+                  placeholder="Screen"
+                />
+                <span class="appleP" id="screenSP"></span>
+              </div>
+              <div class="form-group">
+                <label>backCamera</label>
+                <input
+                  id="back_camera"
+                  class="form-control"
+                  placeholder="Back Camera"
+                />
+                <span class="appleP" id="backSP"></span>
+              </div>
+              <div class="form-group">
+                <label>frontCamera</label>
+                <input
+                  id="front_camera"
+                  class="form-control"
+                  placeholder="Front Camera"
+                />
+                <span class="appleP" id="frontSP"></span>
+              </div>        
+              <div class="form-group">
+                <label>Image</label>
+                <input id="image_product" class="form-control" placeholder="Image">
+                <span class="appleP" id="imageSP"></span>
+                
+              </div>   
+              <div class="form-group">
+                <label>Description</label>               
+                <textarea class="form-control" name="" id="MoTa" cols="30" rows="10" placeholder="Desc"></textarea>
+                <span class="appleP" id="descSP"></span>
+                
+              </div> 
+              <div class="form-group">
+                <label>Type</label>
+                <select class="form-control" id="loaiSP">
+                  <option value="">Choose type</option>
+                  <option value="apple">Apple</option>
+                  <option value="samsung">Samsung</option>
+                </select>
+                <span class="appleP" id="typeSP"></span>
+              </div>
+              <button class="btn btn-success" id="add_product" onclick="addProduct()">Add item</button>  
+              <button class="btn btn-warning" id="update_product" onclick="updateProduct()">Update item</button>  
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">              
+            </div>
+          </div>
+        </div>
+      </div>
+      <img src="" alt="" />
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+      integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script type="module" src="../JS/admin_main.js"></script>
+</body>
+</html>
