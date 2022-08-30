@@ -13,6 +13,14 @@
     <link rel="stylesheet" href="../CSS/admin.css">
 </head>
   <body>
+    <div id="loading">
+
+      <div class="spinner-border text-warning" role="status">
+
+        <span class="sr-only">Loading...</span>
+
+      </div>
+    </div>
       <div class="container">
         <div class="display-4 my-4">Thực hành javascript - axios</div>
       </div>
@@ -58,7 +66,7 @@
             <!-- BEGIN TABLE NGƯỜI DÙNG -->
             <table class="table table-bordered">
               <thead>
-                <tr><th>STT</th>
+                <tr><th>ID</th>
                 <th>Tên Sản Phẩm</th>
                 <th>Giá</th>
                 <th>Hình Ảnh</th>
@@ -97,14 +105,14 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body">
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label>STT item</label>
                 <input
                   id="numberSP"
                   class="form-control"
                   placeholder="enter number item"
                 />
-              </div>
+              </div> -->
               <div class="form-group">
                 <label>Name </label>
                 <input id="TenSP" class="form-control" placeholder="Ex: Iphone">
@@ -113,7 +121,7 @@
               </div>
               <div class="form-group">
                 <label>Price</label>
-                <input id="GiaSP" class="form-control" placeholder="$1000">
+                <input id="GiaSP" class="form-control" placeholder="$1000" >
                 <span class="appleP" id="priceSP"></span>
 
               </div>     
@@ -123,6 +131,7 @@
                   id="manhinhSP"
                   class="form-control"
                   placeholder="Screen"
+                  
                 />
                 <span class="appleP" id="screenSP"></span>
               </div>
@@ -146,7 +155,7 @@
               </div>        
               <div class="form-group">
                 <label>Image</label>
-                <input id="image_product" class="form-control" placeholder="Image">
+                <input id="HinhSP" readOnly class="form-control" placeholder="">
                 <span class="appleP" id="imageSP"></span>
                 
               </div>   
@@ -186,6 +195,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    
+  
     <script type="module" src="../JS/admin_main.js"></script>
 </body>
 </html>
