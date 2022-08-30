@@ -1,0 +1,52 @@
+#loading {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  top: 0;
+  left: 0;
+  position: fixed;
+  overflow: hidden;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+td {
+  vertical-align: middle !important;
+}
+
+body .card {
+  border: none;
+}
+
+#totalPrice {
+  font-weight: bold;
+  text-align: right;
+}
+
+.modal-content {
+  padding: 30px;
+  width: 130%;
+}
+#numberCartItem {
+  position: absolute;
+  height: 22px;
+  width: 22px;
+  font-size: 12px;
+  background: #212529;
+  color: white;
+  border-radius: 50%;
+  border: 1px solid white;
+  text-align: center;
+  line-height: 22px;
+  font-weight: 600;
+  top: 40px;
+  right: 155px;
+  user-select: none;
+  font-family: "Montserrat", sans-serif;
+}
+#cartfa {
+  font-size: 25px;
+  margin-right: 33px;
+}

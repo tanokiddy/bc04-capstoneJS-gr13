@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Title</title>
+    <title>Smart Phone</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -20,6 +27,75 @@
     <link rel="stylesheet" href="../css/main1.css" />
   </head>
   <body>
+    <!-- start loading -->
+    <div id="loading">
+      <div class="spinner-border text-warning" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <!-- end loading -->
+    <div class="container pt-5">
+      <div class="text-right">
+        <span id="numberCartItem"></span>
+        <span
+          id="cartfa"
+          type="button"
+          data-toggle="modal"
+          data-target="#myModal"
+        >
+          <i class="fa fa-lg fa-shopping-cart"></i>
+        </span>
+      </div>
+      <div id="myModal" class="modal fade mb-4">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <p data-dismiss="modal" type="button" class="text-right">X</p>
+            <table id="tableCart" class="table">
+              <thead class="text-center modal-he">
+                <th>Image</th>
+                <th>Product</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Action</th>
+              </thead>
+              <tbody id="cartBody" class="text-center"></tbody>
+            </table>
+            <span id="totalPrice" class=""></span>
+          </div>
+        </div>
+      </div>
+      <div class="container py-3">
+        <div class="dropdown text-right">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenu2"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Filter
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <button
+              onclick="filterIphone(listItem)"
+              class="dropdown-item btn-light"
+              type="button"
+            >
+              Iphone
+            </button>
+            <button
+              onclick="filterSamsung(listItem)"
+              class="dropdown-item btn-light"
+              type="button"
+            >
+              Samsung
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="listProduct" class="row"></div>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
@@ -37,6 +113,13 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
-    <script type="module" src="./main.js"></script>
+    <!-- AXIOS -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"
+      integrity="sha512-rozBdNtS7jw9BlC76YF1FQGjz17qQ0J/Vu9ZCFIW374sEy4EZRbRcUZa2RU/MZ90X2mnLU56F75VfdToGV0RiA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script type="module" src="./JS/main.js"></script>
   </body>
 </html>
