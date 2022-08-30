@@ -3,99 +3,11 @@ import {
   layThongTinTuForm,
   showThongTinLenForm,
   renderDSDT,
+  createLocalPhoneList,
+  localPhoneList,
 } from "./admin_controller.js";
-// {
-// /*
-// // let getDSDT = () => {
-// //   batLoading();
-// //   axios({
-// //     url: `${BASE_URL}/phone`,
-// //     method: "GET",
-// //   })
-// //     .then(function (res) {
-// //       tatLoading();
-// //       renderDSDT(res.data);
-// //     })
-// //     .catch(function (err) {
-// //       tatLoading();
-// //     });
-// // };
-
-// // getDSDT();
-// // document.getElementById("add_product").style.display = "block";
-// // document.getElementById("update_product").style.display = "none";
-
-// document.getElementById("add_product").addEventListener("click", add_product);
-
-// //btn addproduct
-// function add_product() {
-//   console.log("sunny");
-//   // let newProduct = getInfoForm();
-//   // if (verifyValidation()) {
-//   //   batLoading();
-//   //   axios({
-//   //     url: `${BASE_URL}/phone`,
-//   //     method: "GET",
-//   //     data: newProduct,
-//   //   })
-//   //     .then(function (res) {
-//   //       tatLoading();
-//   //       renderDSDT(res.data);
-//   //     })
-//   //     .catch(function (err) {
-//   //       tatLoading();
-//   //     });
-//   // }
-// }
-// // window.addProduct = addProduct;
-
-// // btn updatePRoduc
-
-// // xoa Dien Thoai
-// // const deletePro = (id) => {
-// //   batLoading();
-// //   axios({
-// //     url: `${BASE_URL}/phone/${id}`,
-// //     method: "GET",
-// //   })
-// //     .then(function (res) {
-// //       tatLoading();
-// //       renderDSDT(res.data);
-// //     })
-// //     .catch(function (err) {
-// //       tatLoading();
-// //     });
-// // };
-// // window.deletePro = deletePro;
-
-// // //sua Dien Thoai
-// // const modifyPro = (id) => {
-// //   removeInfo();
-// //   axios({
-// //     url: `${BASE_URL}/phone/${id}`,
-// //     method: "GET",
-// //   })
-// //     .then(function (res) {
-// //       tatLoading();
-// //       showInfoForm(res.data);
-// //     })
-// //     .catch(function (err) {
-// //       tatLoading();
-// //     });
-// //   document.getElementById("add_product").style.display = "none";
-// //   document.getElementById("update_product").style.display = "block";
-// // };
-// // window.modifyPro = modifyPro;
-// */}
 
 const BASE_URL = "https://62f99cb8e056448035383654.mockapi.io";
-// {/*
-// var batLoading = function () {
-//   document.getElementById("loading").style.display = "flex";
-// };
-// var tatLoading = function () {
-//   document.getElementById("loading").style.display = "none";
-// };*/}
 
 export let batLoading = () => {
   document.getElementById("loading").style.display = "flex";
@@ -112,9 +24,10 @@ let getDSDT = () => {
     method: "GET",
   })
     .then(function (res) {
-      // console.log(res.data);
+      console.log(res.data);
       tatLoading();
       renderDSDT(res.data);
+      createLocalPhoneList(res.data);
     })
     .catch(function (err) {
       tatLoading();
@@ -144,10 +57,7 @@ window.xoaDienThoai = xoaDienThoai;
 
 // thêm sản phẩm
 function addProduct() {
-  document.getElementById("add_product").removeAttribute("data-dismiss");
-
-  var newDT = layThongTinTuForm();
-
+  // var newDT = layThongTinTuForm();
   if (verifyValidation()) {
     document
       .getElementById("add_product")
@@ -182,17 +92,24 @@ function suaDienThoai(id) {
       tatLoading();
       showThongTinLenForm(res.data);
       console.log(res.data);
+      let ab = res.data.type;
+      console.log("ab: ", ab);
     })
     .catch(function (err) {
       tatLoading();
+      console.log("err: ", err);
     });
 }
 window.suaDienThoai = suaDienThoai;
 
 function updateProduct(id) {
-  var newDT = layThongTinTuForm();
-  var id = newDT.id;
-  console.log(newDT);
+  let newDT = layThongTinTuForm();
+  let index = localPhoneList.findIndex((item) => {
+    return item.name == newDT.name;
+  });
+  var id = localPhoneList[index].id;
+  console.log("id: ", id);
+
   batLoading();
   axios({
     url: `${BASE_URL}/capstoneapi/${id}`,

@@ -13,3 +13,17 @@
 input span {
   display: none;
 }
+.table td {
+  align-items: center;
+}
+
+#nameSP,
+#priceSP,
+#screenSP,
+#backSP,
+#frontSP,
+#imageSP,
+#descSP,
+#typeSP {
+  color: red;
+}

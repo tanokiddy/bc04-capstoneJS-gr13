@@ -10,7 +10,7 @@
 //   document.getElementById("loading").style.display = "none";
 // };*/}
 
-import { dataPhone } from "./admin_model.js";
+import { DataPhone } from "./admin_model.js";
 import { validation } from "./admin_validation.js";
 
 export const renderDSDT = (listDT) => {
@@ -23,54 +23,27 @@ export const renderDSDT = (listDT) => {
     <td>${dt.price}</td>
     <td class="text-center"><img class="w-25" src="${dt.img}" alt=""></td>
     <td>${dt.desc}</td>
-    <td>
-    <button class="btn btn-danger" onclick="xoaDienThoai('${dt.id}')"> Delete</button>
-    <button class="btn btn-success" onclick="suaDienThoai('${dt.id}')" data-toggle="modal"
-    data-target="#myModal"> Modify</button>
+    <td class="text-center">
+    <button class="btn btn-lg mb-1" onclick="xoaDienThoai('${dt.id}')"><i class="fa fa-trash"></i></button>
+    <button class="btn btn-lg" onclick="suaDienThoai('${dt.id}')" data-toggle="modal"
+    data-target="#myModal"><i class="fa fa-edit"></i></button>
     </td>
-
     </tr>`;
     contentHTML += contentTr;
   });
   document.getElementById("tblDanhSachSP").innerHTML = contentHTML;
 };
 
-// {// export const layThongTinTuForm = () => {
-// //   const id = document.getElementById("numberSP").value;
-// //   const name = document.getElementById("TenSP").value;
-// //   const price = document.getElementById("GiaSP").value;
-// //   const screen = document.getElementById("manhinhSP").value;
-// //   const backCam = document.getElementById("back_camera").value;
-// //   const frontCam = document.getElementById("front_camera").value;
-// //   const image = document.getElementById("HinhSP").value;
-// //   const desc = document.getElementById("MoTa").value;
-// //   const type = document.getElementById("loaiSP").value;
-
-// //   return new dataPhone(
-// //     id,
-// //     name,
-// //     price,
-// //     screen,
-// //     backCam,
-// //     frontCam,
-// //     image,
-// //     desc,
-// //     type
-// //   );
-// // };
-// }
-export const layThongTinTuForm = () => {
-  // const id = document.getElementById("numberSP").value;
+export let layThongTinTuForm = () => {
   const name = document.getElementById("TenSP").value;
   const price = document.getElementById("GiaSP").value;
   const screen = document.getElementById("manhinhSP").value;
   const backCamera = document.getElementById("back_camera").value;
   const frontCamera = document.getElementById("front_camera").value;
-  // const image = document.getElementById("HinhSP").value;
   const desc = document.getElementById("MoTa").value;
   const type = document.getElementById("loaiSP").value;
 
-  return new dataPhone(
+  return new DataPhone(
     name,
     price,
     screen,
@@ -82,19 +55,19 @@ export const layThongTinTuForm = () => {
 };
 
 export const showThongTinLenForm = (dthoai) => {
-  document.getElementById("numberSP").value = dthoai.id;
   document.getElementById("TenSP").value = dthoai.name;
   document.getElementById("GiaSP").value = dthoai.price;
   document.getElementById("manhinhSP").value = dthoai.screen;
-  document.getElementById("back_camera").value = dthoai.backCam;
-  document.getElementById("front_camera").value = dthoai.frontCam;
-  // document.getElementById("HinhSP").value = dthoai.image;
-  document.getElementById("MoTa").value = dthoai.desc;
+  document.getElementById("back_camera").value = dthoai.backCamera;
+  document.getElementById("front_camera").value = dthoai.frontCamera;
+  document.getElementById("MoTa").innerHTML = dthoai.desc;
   document.getElementById("loaiSP").value = dthoai.type;
 };
 
 export const verifyValidation = () => {
   let newDT = layThongTinTuForm();
+  console.log("newDT: ", newDT);
+  console.log("newDT.type: ", newDT.desc);
   let isValidTen =
     validation.kiemTraRong(
       newDT.name,
@@ -140,28 +113,30 @@ export const verifyValidation = () => {
     "backSP",
     "Camera sau ko duoc de rong"
   );
-  let isValidDescription = validation.kiemTraRong(
+
+  let isValidDesc = validation.kiemTraRong(
     newDT.desc,
     "descSP",
-    "Mo ta  ko duoc de rong"
+    "Mo ta dt ko duoc de rong"
   );
 
-  let isValidType = validation.kiemTraRong(
-    newDT.type,
+  let isValidType = validation.kiemTraLoaiSP(
+    newDT.desc,
     "typeSP",
     "Loai dt ko duoc de rong"
   );
 
-  let isValid =
+  var isValid =
     isValidTen &
     isValidPrice &
     isValidManHinh &
     isValidFrontCam &
     isValidbackCam &
-    isValidDescription &
+    isValidDesc &
     isValidType;
   return isValid;
 };
+
 export const removeSpancontent = () => {
   document.getElementById("nameSP").innerText = "";
   document.getElementById("priceSP").innerText = "";
@@ -171,3 +146,10 @@ export const removeSpancontent = () => {
   document.getElementById("descSP").innerText = "";
   document.getElementById("typeSP").innerText = "";
 };
+
+export let localPhoneList = [];
+export let createLocalPhoneList = (resData) => {
+  localPhoneList = resData;
+  console.log("localPhoneList: ", localPhoneList);
+};
+window.localPhoneList = localPhoneList;

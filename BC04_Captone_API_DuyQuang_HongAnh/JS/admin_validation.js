@@ -1,34 +1,3 @@
-// {/*export class Item {
-//   constructor(
-//     id,
-//     name,
-//     price,
-//     screen,
-//     backCamera,
-//     frontCamera,
-//     img,
-//     desc,
-//     type
-//   ) {
-//     this.id = id;
-//     this.name = name;
-//     this.price = price;
-//     this.screen = screen;
-//     this.backCamera = backCamera;
-//     this.frontCamera = frontCamera;
-//     this.img = img;
-//     this.desc = desc;
-//     this.type = type;
-//   }
-// }
-
-// export class SanPham {
-//   constructor(id, quantily) {
-//     this.id = id;
-//     this.quantily = quantily;
-//   }
-// }*/}
-
 export let validation = {
   kiemTraRong: function (value, idError, message) {
     if (value.length == 0) {
@@ -61,6 +30,15 @@ export let validation = {
   },
   kiemTraGiaTri: function (value, idError, message, min, max) {
     if (value * 1 < min || value * 1 > max) {
+      document.getElementById(idError).innerText = message;
+      return false;
+    } else {
+      document.getElementById(idError).innerText = "";
+      return true;
+    }
+  },
+  kiemTraLoaiSP: function (value, idError, message) {
+    if (value == "Choose type" || value == "") {
       document.getElementById(idError).innerText = message;
       return false;
     } else {
