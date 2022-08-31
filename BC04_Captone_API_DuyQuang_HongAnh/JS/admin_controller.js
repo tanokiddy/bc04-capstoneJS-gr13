@@ -40,8 +40,8 @@ export let layThongTinTuForm = () => {
   const screen = document.getElementById("manhinhSP").value;
   const backCamera = document.getElementById("back_camera").value;
   const frontCamera = document.getElementById("front_camera").value;
-  const desc = document.getElementById("MoTa").value;
-  const type = document.getElementById("loaiSP").value;
+  const desc1 = document.getElementById("loaiSP").value;
+  const type1 = document.getElementById("MoTa").value;
 
   return new DataPhone(
     name,
@@ -49,8 +49,8 @@ export let layThongTinTuForm = () => {
     screen,
     backCamera,
     frontCamera,
-    desc,
-    type
+    desc1,
+    type1
   );
 };
 
@@ -66,8 +66,9 @@ export const showThongTinLenForm = (dthoai) => {
 
 export const verifyValidation = () => {
   let newDT = layThongTinTuForm();
-  console.log("newDT: ", newDT);
-  console.log("newDT.type: ", newDT.desc);
+  console.log("newDT", newDT);
+  console.log("newDT.type: ", document.querySelector("#loaiSP").value);
+  console.log("newDT.desc: ", newDT.desc);
   let isValidTen =
     validation.kiemTraRong(
       newDT.name,
@@ -121,7 +122,7 @@ export const verifyValidation = () => {
   );
 
   let isValidType = validation.kiemTraLoaiSP(
-    newDT.desc,
+    newDT.type,
     "typeSP",
     "Loai dt ko duoc de rong"
   );
@@ -135,16 +136,6 @@ export const verifyValidation = () => {
     isValidDesc &
     isValidType;
   return isValid;
-};
-
-export const removeSpancontent = () => {
-  document.getElementById("nameSP").innerText = "";
-  document.getElementById("priceSP").innerText = "";
-  document.getElementById("screenSP").innerText = "";
-  document.getElementById("frontSP").innerText = "";
-  document.getElementById("backSP").innerText = "";
-  document.getElementById("descSP").innerText = "";
-  document.getElementById("typeSP").innerText = "";
 };
 
 export let localPhoneList = [];

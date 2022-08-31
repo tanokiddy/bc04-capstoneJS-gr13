@@ -40,7 +40,7 @@ document.getElementById("btnThemSP").addEventListener("click", () => {
   document.getElementById("add_product").style.display = "inline-block";
 });
 
-//xoá sản phẩm
+//delete button
 function xoaDienThoai(id) {
   axios({
     url: `${BASE_URL}/capstoneapi/${id}`,
@@ -55,9 +55,11 @@ function xoaDienThoai(id) {
 }
 window.xoaDienThoai = xoaDienThoai;
 
-// thêm sản phẩm
+// add btn
 function addProduct() {
-  // var newDT = layThongTinTuForm();
+  document.getElementById("add_product").removeAttribute("data-dismiss");
+
+  var newDT = layThongTinTuForm();
   if (verifyValidation()) {
     document
       .getElementById("add_product")
@@ -82,6 +84,7 @@ function addProduct() {
 window.addProduct = addProduct;
 
 // sửa điện thoại
+var newDT = layThongTinTuForm();
 function suaDienThoai(id) {
   batLoading();
   axios({
