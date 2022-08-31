@@ -23,12 +23,12 @@ export let renderPhone = (listPhone) => {
     document.querySelector("#listProduct").innerHTML = contentHTML;
   });
 };
-//=========
 
+//=========
+window.renderPhone = renderPhone;
 //Build PhoneArray
 export let listItem = [];
 window.listItem = listItem;
-
 export let createPhoneArr = (resData) => {
   resData.forEach((item) => {
     listItem.push(item);
@@ -103,7 +103,10 @@ export let renderCart = (cartArr) => {
       "#totalPrice"
     ).innerHTML = `Total: $${totalPrice.toLocaleString()}
     <br>
-    <button onclick="buyCart()" class="btn btn-sm btn-danger">Thanh toán</button>`;
+    <br>
+    <button onclick="clearCart()" class="btn btn btn-danger mr-3">Clear Cart</button>
+    <button onclick="buyCart()" class="btn btn btn-secondary">Thanh toán</button>
+    `;
   } else {
     document.querySelector("#totalPrice").innerHTML = "";
   }
