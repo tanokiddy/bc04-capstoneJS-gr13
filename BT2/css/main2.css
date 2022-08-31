@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+:root {
+  font-size: 16px;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+input span {
+  display: none;
+}
+.table td {
+  align-items: center;
+}
+
+#nameSP,
+#priceSP,
+#screenSP,
+#backSP,
+#frontSP,
+#imageSP,
+#descSP,
+#typeSP {
+  color: red;
+}
