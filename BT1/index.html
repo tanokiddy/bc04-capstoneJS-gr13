@@ -24,7 +24,7 @@
       crossorigin="anonymous"
     />
     <!-- MAIN CSS -->
-    <link rel="stylesheet" href="../css/main1.css" />
+    <link rel="stylesheet" href="./css/main1.css" />
   </head>
   <body>
     <!-- start loading -->
@@ -35,7 +35,15 @@
     </div>
     <!-- end loading -->
     <div class="container pt-5">
-      <div class="text-right">
+      <div class="text-right mb-3">
+        <a
+          target="_blank"
+          class="btn btn-primary"
+          href="https://bc04-capstonejs-gr13-honganh.surge.sh/"
+          >Axios Phone List</a
+        >
+      </div>
+      <div id="cartIcon" class="text-right">
         <span id="numberCartItem"></span>
         <span
           id="cartfa"
@@ -54,7 +62,7 @@
               <thead class="text-center modal-he">
                 <th>Image</th>
                 <th>Product</th>
-                <th>Amount</th>
+                <th>Quantity</th>
                 <th>Price</th>
                 <th>Action</th>
               </thead>
@@ -77,6 +85,13 @@
             Filter
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <button
+              onclick="renderPhone(listItem)"
+              class="dropdown-item btn-light"
+              type="button"
+            >
+              All
+            </button>
             <button
               onclick="filterIphone(listItem)"
               class="dropdown-item btn-light"
