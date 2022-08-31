@@ -17,18 +17,17 @@ let getlistPhone = () => {
   })
     .then(function (res) {
       tatLoading();
-      // console.log(res);
-      renderPhone(res.data);
+      console.log(res.data);
       createPhoneArr(res.data);
+      renderPhone(res.data);
+      // renderPhone(listItem);
     })
     .catch(function (err) {
       tatLoading();
-      // console.log(err);
+      console.log(err);
     });
 };
 getlistPhone();
-// console.log("listItem: ", listItem);
-
 const CARTARRAY_LOCALSTORAGE = "CARTARRAY_LOCALSTORAGE";
 let cartArr = [];
 
@@ -127,3 +126,13 @@ let numberCartItem = () => {
 };
 window.numberCartItem = numberCartItem;
 numberCartItem();
+// clear cart
+let clearCart = () => {
+  cartArr = [];
+  let cartArrJson = JSON.stringify(cartArr);
+  localStorage.setItem(CARTARRAY_LOCALSTORAGE, cartArrJson);
+  document.querySelector("#cartBody").innerHTML = "";
+  document.querySelector("#totalPrice").innerHTML = "";
+  numberCartItem();
+};
+window.clearCart = clearCart;
