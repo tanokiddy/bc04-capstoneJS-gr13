@@ -1,15 +1,3 @@
-// {/*const emptycart = `<span class="empty-cart"
-// >Looks Like You Haven't Added Any Product In The Cart</span
-// >`;
-// //turn on loading
-// export let batLoading = () => {
-//   document.getElementById("loading").style.display = "flex";
-// };
-// //turn off Loading
-// export let tatLoading = () => {
-//   document.getElementById("loading").style.display = "none";
-// };*/}
-
 import { DataPhone } from "./admin_model.js";
 import { validation } from "./admin_validation.js";
 
@@ -40,8 +28,8 @@ export let layThongTinTuForm = () => {
   const screen = document.getElementById("manhinhSP").value;
   const backCamera = document.getElementById("back_camera").value;
   const frontCamera = document.getElementById("front_camera").value;
-  const desc1 = document.getElementById("loaiSP").value;
-  const type1 = document.getElementById("MoTa").value;
+  const desc = document.getElementById("loaiSP").value;
+  const type = document.getElementById("MoTa").value;
 
   return new DataPhone(
     name,
@@ -49,8 +37,8 @@ export let layThongTinTuForm = () => {
     screen,
     backCamera,
     frontCamera,
-    desc1,
-    type1
+    desc,
+    type
   );
 };
 
@@ -139,8 +127,31 @@ export const verifyValidation = () => {
 };
 
 export let localPhoneList = [];
+
 export let createLocalPhoneList = (resData) => {
-  localPhoneList = resData;
-  console.log("localPhoneList: ", localPhoneList);
+  resData.forEach((item) => {
+    localPhoneList.push(item);
+  });
 };
-window.localPhoneList = localPhoneList;
+
+export function emptyInput() {
+  document.getElementById("TenSP").value = "";
+  document.getElementById("GiaSP").value = "";
+  document.getElementById("manhinhSP").value = "";
+  document.getElementById("back_camera").value = "";
+  document.getElementById("front_camera").value = "";
+  document.getElementById("MoTa").value = "";
+  document.getElementById("loaiSP").value = "";
+}
+window.emptyInput = emptyInput;
+
+export function emptySpan() {
+  document.getElementById("nameSP").value = "";
+  document.getElementById("priceSP").value = "";
+  document.getElementById("screenSP").value = "";
+  document.getElementById("backSP").value = "";
+  document.getElementById("frontSP").value = "";
+  document.getElementById("descSP").value = "";
+  document.getElementById("typeSP").value = "";
+}
+window.emptySpan = emptySpan;
