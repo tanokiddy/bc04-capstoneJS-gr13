@@ -29,6 +29,10 @@ body .card {
   padding: 30px;
   width: 130%;
 }
+
+#cartIcon {
+  position: relative;
+}
 #numberCartItem {
   position: absolute;
   height: 22px;
@@ -41,12 +45,12 @@ body .card {
   text-align: center;
   line-height: 22px;
   font-weight: 600;
-  top: 40px;
-  right: 155px;
-  user-select: none;
   font-family: "Montserrat", sans-serif;
+  right: -5px;
+  top: -5px;
 }
+
 #cartfa {
   font-size: 25px;
-  margin-right: 33px;
-}
+  /* margin-right: 33px; */
+} /*# sourceMappingURL=main1.css.map */
