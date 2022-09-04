@@ -6,6 +6,7 @@ import {
   createLocalPhoneList,
   localPhoneList,
   emptySpan,
+  emptyInput,
 } from "./controller.js";
 
 const BASE_URL = "https://62f99cb8e056448035383654.mockapi.io";
@@ -58,6 +59,10 @@ function xoaDienThoai(id) {
 window.xoaDienThoai = xoaDienThoai;
 
 // add btn
+document.getElementById("btnThemSP").onclick = function () {
+  document.querySelector("#update_product").style.display = "none";
+  emptyInput();
+};
 function addProduct() {
   document.getElementById("add_product").removeAttribute("data-dismiss");
 
@@ -88,12 +93,14 @@ window.addProduct = addProduct;
 // sửa điện thoại
 function suaDienThoai(id) {
   batLoading();
+  emptySpan();
+  document.getElementById("add_product").style.display = "none";
+  document.querySelector("#update_product").style.display = "inline-block";
   axios({
     url: `${BASE_URL}/capstoneapi/${id}`,
     method: "GET",
   })
     .then(function (res) {
-      emptySpan();
       tatLoading();
       showThongTinLenForm(res.data);
       console.log(res.data);
@@ -107,12 +114,15 @@ window.suaDienThoai = suaDienThoai;
 
 function updateProduct(id) {
   let newDT = layThongTinTuForm();
-  console.log("newDT: ", newDT.id);
   let index = localPhoneList.findIndex((item) => {
     return item.name == newDT.name;
   });
   var id = localPhoneList[index].id;
+  document.getElementById("update_product").removeAttribute("data-dismiss");
   if (verifyValidation()) {
+    document
+      .getElementById("update_product")
+      .setAttribute("data-dismiss", "modal");
     batLoading();
     axios({
       url: `${BASE_URL}/capstoneapi/${id}`,
@@ -122,6 +132,8 @@ function updateProduct(id) {
       .then(function (res) {
         tatLoading();
         getDSDT();
+        document.getElementById("add_product").style.display = "inline-block";
+        document.querySelector("#update_product").style.display = "none";
       })
       .catch(function (err) {
         tatLoading();

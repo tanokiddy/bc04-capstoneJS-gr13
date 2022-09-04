@@ -27,3 +27,7 @@ input span {
 #typeSP {
   color: red;
 }
+
+#urlLink {
+  padding: 1.375rem 0.75rem !important;
+}
