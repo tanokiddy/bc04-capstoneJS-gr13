@@ -6,7 +6,7 @@ import {
   createLocalPhoneList,
   localPhoneList,
   emptySpan,
-} from "./admin_controller.js";
+} from "./controller.js";
 
 const BASE_URL = "https://62f99cb8e056448035383654.mockapi.io";
 

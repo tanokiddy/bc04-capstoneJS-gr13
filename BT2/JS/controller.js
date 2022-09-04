@@ -1,5 +1,5 @@
-import { DataPhone } from "./admin_model.js";
-import { validation } from "./admin_validation.js";
+import { DataPhone } from "./model.js";
+import { validation } from "./validation.js";
 
 export const renderDSDT = (listDT) => {
   let contentHTML = "";
@@ -8,7 +8,7 @@ export const renderDSDT = (listDT) => {
     <tr>
     <td>${dt.id}</td>
     <td>${dt.name}</td>
-    <td>${dt.price}</td>
+    <td>$${dt.price}</td>
     <td class="text-center"><img class="w-25" src="${dt.img}" alt=""></td>
     <td>${dt.desc}</td>
     <td class="text-center">
@@ -28,6 +28,7 @@ export let layThongTinTuForm = () => {
   const screen = document.getElementById("manhinhSP").value;
   const backCamera = document.getElementById("back_camera").value;
   const frontCamera = document.getElementById("front_camera").value;
+  const img = document.querySelector("#HinhSP").value;
   const desc = document.getElementById("loaiSP").value;
   const type = document.getElementById("MoTa").value;
 
@@ -37,6 +38,7 @@ export let layThongTinTuForm = () => {
     screen,
     backCamera,
     frontCamera,
+    img,
     desc,
     type
   );
@@ -48,6 +50,7 @@ export const showThongTinLenForm = (dthoai) => {
   document.getElementById("manhinhSP").value = dthoai.screen;
   document.getElementById("back_camera").value = dthoai.backCamera;
   document.getElementById("front_camera").value = dthoai.frontCamera;
+  document.querySelector("#HinhSP").value = dthoai.img;
   document.getElementById("MoTa").innerHTML = dthoai.desc;
   document.getElementById("loaiSP").value = dthoai.type;
 };
@@ -57,19 +60,11 @@ export const verifyValidation = () => {
   console.log("newDT", newDT);
   console.log("newDT.type: ", document.querySelector("#loaiSP").value);
   console.log("newDT.desc: ", newDT.desc);
-  let isValidTen =
-    validation.kiemTraRong(
-      newDT.name,
-      "nameSP",
-      "ten item khong duoc de rong"
-    ) &&
-    validation.kiemTraDoDai(
-      newDT.name,
-      "nameSP",
-      "ten item phai tu 4-10 ky tu",
-      4,
-      10
-    );
+  let isValidTen = validation.kiemTraRong(
+    newDT.name,
+    "nameSP",
+    "ten item khong duoc de rong"
+  );
 
   let isValidPrice =
     validation.kiemTraRong(
