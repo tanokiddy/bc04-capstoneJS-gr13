@@ -29,8 +29,8 @@ export let layThongTinTuForm = () => {
   const backCamera = document.getElementById("back_camera").value;
   const frontCamera = document.getElementById("front_camera").value;
   const img = document.querySelector("#HinhSP").value;
-  const desc = document.getElementById("loaiSP").value;
-  const type = document.getElementById("MoTa").value;
+  const desc = document.getElementById("MoTa").value;
+  const type = document.getElementById("loaiSP").value;
 
   return new DataPhone(
     name,
@@ -51,7 +51,7 @@ export const showThongTinLenForm = (dthoai) => {
   document.getElementById("back_camera").value = dthoai.backCamera;
   document.getElementById("front_camera").value = dthoai.frontCamera;
   document.querySelector("#HinhSP").value = dthoai.img;
-  document.getElementById("MoTa").innerHTML = dthoai.desc;
+  document.getElementById("MoTa").value = dthoai.desc;
   document.getElementById("loaiSP").value = dthoai.type;
 };
 
