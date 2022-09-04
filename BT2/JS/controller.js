@@ -57,15 +57,13 @@ export const showThongTinLenForm = (dthoai) => {
 
 export const verifyValidation = () => {
   let newDT = layThongTinTuForm();
-  console.log("newDT", newDT);
-  console.log("newDT.type: ", document.querySelector("#loaiSP").value);
-  console.log("newDT.desc: ", newDT.desc);
   let isValidTen = validation.kiemTraRong(
     newDT.name,
     "nameSP",
     "ten item khong duoc de rong"
   );
 
+  console.log("newDT.price: ", newDT.price);
   let isValidPrice =
     validation.kiemTraRong(
       newDT.price,
@@ -135,18 +133,20 @@ export function emptyInput() {
   document.getElementById("manhinhSP").value = "";
   document.getElementById("back_camera").value = "";
   document.getElementById("front_camera").value = "";
+  document.getElementById("HinhSP").value = "";
   document.getElementById("MoTa").value = "";
   document.getElementById("loaiSP").value = "";
 }
 window.emptyInput = emptyInput;
 
 export function emptySpan() {
-  document.getElementById("nameSP").value = "";
-  document.getElementById("priceSP").value = "";
-  document.getElementById("screenSP").value = "";
-  document.getElementById("backSP").value = "";
-  document.getElementById("frontSP").value = "";
-  document.getElementById("descSP").value = "";
-  document.getElementById("typeSP").value = "";
+  document.getElementById("nameSP").innerText = "";
+  document.getElementById("priceSP").innerText = "";
+  document.getElementById("screenSP").innerText = "";
+  document.getElementById("backSP").innerText = "";
+  document.getElementById("frontSP").innerText = "";
+  document.getElementById("imageSP").innerText = "";
+  document.getElementById("descSP").innerText = "";
+  document.getElementById("typeSP").innerText = "";
 }
 window.emptySpan = emptySpan;
