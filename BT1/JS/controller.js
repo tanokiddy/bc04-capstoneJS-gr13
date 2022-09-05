@@ -30,9 +30,11 @@ window.renderPhone = renderPhone;
 export let listItem = [];
 window.listItem = listItem;
 export let createPhoneArr = (resData) => {
-  resData.forEach((item) => {
+  resData.map((item) => {
+    item = { ...item, amount: 1 };
     listItem.push(item);
   });
+  return listItem;
 };
 //==========
 

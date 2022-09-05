@@ -17,10 +17,9 @@ let getlistPhone = () => {
   })
     .then(function (res) {
       tatLoading();
-      console.log(res.data);
-      createPhoneArr(res.data);
+      console.log(res);
       renderPhone(res.data);
-      // renderPhone(listItem);
+      createPhoneArr(res.data);
     })
     .catch(function (err) {
       tatLoading();
@@ -28,6 +27,8 @@ let getlistPhone = () => {
     });
 };
 getlistPhone();
+console.log("listItem: ", listItem);
+
 const CARTARRAY_LOCALSTORAGE = "CARTARRAY_LOCALSTORAGE";
 let cartArr = [];
 
@@ -40,23 +41,23 @@ if (cartArrJson != null) {
 
 //Add to cart
 let addToCart = (phoneId) => {
-  let index = listItem.findIndex((item) => {
+  let cloneListItem = listItem;
+  let index = cloneListItem.findIndex((item) => {
     return item.id == phoneId;
   });
   let index1 = cartArr.findIndex((item) => {
-    return item.id == listItem[index].id;
+    return item.id == cloneListItem[index].id;
   });
   if (index1 < 0) {
-    cartArr.push(listItem[index]);
-    // console.log("cartArr: ", cartArr);
+    cartArr.push(cloneListItem[index]);
   } else {
     cartArr[index1].amount++;
-    // console.log("cartArr[index1].amount: ", cartArr[index1].amount);
   }
   let cartArrJson = JSON.stringify(cartArr);
   localStorage.setItem(CARTARRAY_LOCALSTORAGE, cartArrJson);
   numberCartItem();
   renderCart(cartArr);
+  console.log("listItem: ", listItem);
 };
 window.addToCart = addToCart;
 
@@ -70,6 +71,8 @@ let deleteCartItem = (cartId) => {
   localStorage.setItem(CARTARRAY_LOCALSTORAGE, cartArrJson);
   numberCartItem();
   renderCart(cartArr);
+  listItem.splice(0, listItem.length);
+  getlistPhone();
 };
 window.deleteCartItem = deleteCartItem;
 //===========
@@ -105,17 +108,6 @@ let decreaseCartItem = (cartId) => {
 };
 window.decreaseCartItem = decreaseCartItem;
 
-//buy Cart
-let buyCart = () => {
-  cartArr = [];
-  let cartArrJson = JSON.stringify(cartArr);
-  localStorage.setItem(CARTARRAY_LOCALSTORAGE, cartArrJson);
-  document.querySelector("#cartBody").innerHTML = "Thanh toán thành công";
-  document.querySelector("#totalPrice").innerHTML = "";
-  numberCartItem();
-};
-window.buyCart = buyCart;
-
 //Number in cart
 let numberCartItem = () => {
   let number = 0;
@@ -126,13 +118,27 @@ let numberCartItem = () => {
 };
 window.numberCartItem = numberCartItem;
 numberCartItem();
+//buy Cart
+let buyCart = () => {
+  cartArr.splice(0, cartArr.length);
+  let cartArrJson = JSON.stringify(cartArr);
+  localStorage.setItem(CARTARRAY_LOCALSTORAGE, cartArrJson);
+  document.querySelector("#cartBody").innerHTML = "Thanh toán thành công";
+  document.querySelector("#totalPrice").innerHTML = "";
+  numberCartItem();
+  listItem.splice(0, listItem.length);
+  getlistPhone();
+};
+window.buyCart = buyCart;
 // clear cart
 let clearCart = () => {
-  cartArr = [];
+  cartArr.splice(0, cartArr.length);
   let cartArrJson = JSON.stringify(cartArr);
   localStorage.setItem(CARTARRAY_LOCALSTORAGE, cartArrJson);
   document.querySelector("#cartBody").innerHTML = "";
   document.querySelector("#totalPrice").innerHTML = "";
   numberCartItem();
+  listItem.splice(0, listItem.length);
+  getlistPhone();
 };
 window.clearCart = clearCart;
